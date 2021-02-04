@@ -22,7 +22,6 @@ public class DemoApplicationTests {
     private UserMapper userMapper;
 
     @Test
-    @Ignore
     public void select(){
         List<User> list = userMapper.selectList(null);
         Assert.assertEquals(5, list.size());
