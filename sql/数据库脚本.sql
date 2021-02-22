@@ -28,3 +28,8 @@ VALUES (1087982257332887553, '大boss', 40, 'boss@baomidou.com', NULL
 		, '2019-01-14 09:15:15'),
 	(1094592041087729666, '刘红雨', 32, 'lhm@baomidou.com', 1088248166370832385
 		, '2019-01-14 09:48:16');
+
+CREATE TABLE foo (
+                     id BIGINT(20) PRIMARY KEY NOT NULL COMMENT '主键',
+                     name VARCHAR(30) DEFAULT NULL COMMENT '姓名'
+)  ENGINE=INNODB CHARSET=UTF8;
