@@ -25,4 +25,15 @@
             <if test="key != null and value != null">#{value}</if>
         </foreach>
     </insert>
+
+    <insert id="importUser"  >
+        insert into ${table_name}
+        <foreach item="value" collection="map" index="key" open="("   separator="," close=")">
+            ${key}
+        </foreach>
+        values
+        <foreach item="value" collection="map" index="key"  open="("   separator="," close=")">
+            #{value}
+        </foreach>
+    </insert>
 </mapper>

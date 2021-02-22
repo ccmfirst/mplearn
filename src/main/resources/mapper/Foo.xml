@@ -4,11 +4,12 @@
 <mapper namespace="com.first.demo.dao.FooMapper">
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO `foo`
-        <foreach collection="condition.entrySet()" index="key" item="value" open="(" separator="," close=")">
-            <if test="key != null and value != null">`${key}`</if>
+        <foreach item="value" collection="map" index="key" open="("   separator="," close=")">
+            ${key}
         </foreach>
-        <foreach collection="condition.entrySet()" index="key" item="value" open=" VALUES(" separator="," close=")">
-            <if test="key != null and value != null">#{value}</if>
+        values
+        <foreach item="value" collection="map" index="key"  open="("   separator="," close=")">
+            #{value}
         </foreach>
     </insert>
 </mapper>

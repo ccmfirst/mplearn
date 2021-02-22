@@ -179,4 +179,12 @@ public class DemoApplicationTests {
 
         System.out.println("受到影响的行数:" + retVal + "自增的id:" + id);
     }
+
+    public void insertUser() {
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("name", "zs");
+        dataMap.put("age", 40);
+        dataMap.put("manager_id", 1088248166370832385L);
+        this.userMapper.importUser(dataMap, "user");
+    }
 }
