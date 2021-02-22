@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.first.demo.dao.FooMapper">
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO `foo`
+        <foreach collection="condition.entrySet()" index="key" item="value" open="(" separator="," close=")">
+            <if test="key != null and value != null">`${key}`</if>
+        </foreach>
+        <foreach collection="condition.entrySet()" index="key" item="value" open=" VALUES(" separator="," close=")">
+            <if test="key != null and value != null">#{value}</if>
+        </foreach>
+    </insert>
+</mapper>

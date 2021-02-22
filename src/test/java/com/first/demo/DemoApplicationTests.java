@@ -1,8 +1,11 @@
 package com.first.demo;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.first.demo.dao.FooMapper;
 import com.first.demo.dao.UserMapper;
+import com.first.demo.entity.FooEntity;
 import com.first.demo.entity.User;
+import com.first.demo.tools.BeanUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -158,5 +162,21 @@ public class DemoApplicationTests {
         dataMap.put("manager_id", 1088248166370832385L);
         int count = this.userMapper.saveData(dataMap);
         System.out.println(count);
+    }
+
+    @Autowired
+    private FooMapper fooMapper;
+
+    @Test
+    public void test(){
+        FooEntity fooEntity = new FooEntity();
+        fooEntity.setName("SpringBoot中文社区");
+        Map<String, Object> condition = BeanUtils.beanToMap(fooEntity, true);
+
+        int retVal = this.fooMapper.insert(condition);
+
+        Integer id = ((BigInteger)condition.get("id")).intValue();
+
+        System.out.println("受到影响的行数:" + retVal + "自增的id:" + id);
     }
 }
