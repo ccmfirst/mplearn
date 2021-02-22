@@ -6,4 +6,23 @@
         SELECT id, name, age, email, manager_id, create_time
         FROM user
     </select>
+
+<!--    <insert id="saveData" keyProperty="id" useGeneratedKeys="true" parameterType="hashmap">-->
+<!--        INSERT INTO "user" (c1,c2) VALUE-->
+<!--        &lt;!&ndash; collection="keys"中的keys和最外层的map得key对应，不用管dao层的定义的那个参数名，且index=“key” 中key这个也是固定的，                          &ndash;&gt;-->
+<!--        <foreach collection="keys" index="key" item="value" separator="," >-->
+<!--            &lt;!&ndash;这个地方也是固定写法，key代码map的key，value代表map中该key对应的value&ndash;&gt;-->
+<!--            (#{key},#{value})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+    <insert id="saveData" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO `user`
+        <foreach collection="dataMap.entrySet()" index="key" item="value" open="(" separator="," close=")">
+            <if test="key != null and value != null">`${key}`</if>
+        </foreach>
+        <foreach collection="dataMap.entrySet()" index="key" item="value" open=" VALUES(" separator="," close=")">
+            <if test="key != null and value != null">#{value}</if>
+        </foreach>
+    </insert>
 </mapper>
